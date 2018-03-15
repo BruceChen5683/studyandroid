@@ -8,12 +8,41 @@
     tools:context="www.battlecall.tk.basedemo.MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/center"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_width="0dp"
+        app:layout_constraintWidth_max="100dp"
+        app:layout_constraintWidth_min="10dp"
+        android:text="Hello World!XXXXXXXXXXXXXXXXXXXX"
+        android:background="#00ffff"
+        android:visibility="visible"
+
+        app:layout_constraintVertical_bias="0.4"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constrainedWidth="true"
+        android:text="layout_constraintTop_toTopOfdddddddddddddddddddddddddd"
+        app:layout_constraintCircle="@id/center"
+        app:layout_constraintCircleRadius="250dp"
+        app:layout_constraintCircleAngle="180"
+        android:background="#ffadfb"/>
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="0dp"
+        android:text="0000"
+        android:background="#ccbaa0"
+        app:layout_constraintDimensionRatio="1:1"/>
+
+
+
+
 
 </android.support.constraint.ConstraintLayout>
