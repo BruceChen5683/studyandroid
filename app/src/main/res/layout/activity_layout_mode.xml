@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="www.battlecall.tk.basedemo.customview.LayoutModeActivity">
+
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="start"/>-->
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:background="#0000ff"-->
+    <!--android:layoutMode="clipBounds"-->
+    <!--android:orientation="vertical">-->
+    <!--<Button-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="#ff0000"-->
+        <!--android:text="start"/>-->
+<!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layoutMode="clipBounds"-->
+        <!--android:background="#00ff00"-->
+
+        <!--android:orientation="horizontal">-->
+        <!--<Button-->
+            <!--android:background="#ff0000"-->
+
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="start"/>-->
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="#0000ff"-->
+        <!--android:layoutMode="opticalBounds"-->
+        <!--android:orientation="vertical">-->
+        <!--<Button-->
+            <!--android:background="#ff0000"-->
+
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="start"/>-->
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="#ff0000"-->
+        <!--android:layoutMode="opticalBounds"-->
+        <!--android:orientation="horizontal">-->
+        <!--<Button-->
+            <!--android:background="#0000ff"-->
+
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="start"/>-->
+    <!--</LinearLayout>-->
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/linear"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="#fff000"-->
+        <!--android:layoutMode="clipBounds">-->
+        <!--<Button-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="点击"/>-->
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="测试的"-->
+            <!--/>-->
+    <!--</LinearLayout>-->
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff000"
+        android:layoutMode="opticalBounds">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#0ffff0"
+            android:text="点击"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="测试的"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linear2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff000"
+        android:layoutMode="clipBounds">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#0ffff0"
+            android:text="点击"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="测试的"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -2,26 +2,62 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="www.battlecall.tk.basedemo">
 
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"></uses-permission>
+    <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES"></uses-permission>
+
+    <permission
+        android:name="android.permission.FORCE_STOP_PACKAGES"
+        android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
+        android:protectionLevel="signature"
+        android:sharedUserId="android.uid.system" />
+
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".moretvmid.DisplayMetricsActivity">
+        </activity>
         <activity android:name=".activity.ConstraintLayoutActivity">
         </activity>
         <activity android:name=".dispatch.DispatchActivity">
         </activity>
         <activity android:name=".MainActivity">
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN"/>-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER"/>-->
+            <!--</intent-filter>-->
+        </activity>
+        <activity android:name=".customview.ViewActivity">
+        </activity>
+        <activity android:name=".customview.LayoutModeActivity">
+        </activity>
+        <activity android:name=".customview.CanvasDrawActivity">
+        </activity>
+        <activity android:name=".keepalive.LowMemoryActivity">
+        </activity>
+        <activity android:name=".keepalive.OnePxActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".customview.ViewActivity">
-        </activity>
+
+        <service android:name=".keepalive.PushService">
+            <intent-filter>
+                <action android:name="test.PushService"></action>
+            </intent-filter>
+        </service>
+        <service android:name=".keepalive.SlaveService">
+            <intent-filter>
+                <action android:name="test.SlaveService"></action>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

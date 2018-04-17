@@ -7,9 +7,11 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by BattleCall on 2018/3/22.
