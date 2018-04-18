@@ -40,29 +40,30 @@ public class PushService extends Service{
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
-		Toast.makeText(this,"Service started",Toast.LENGTH_SHORT).show();
-//利用notification提升进程权限
-		if(Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2){
-			startForeground(1001,new Notification());
-		}else {
-			startForeground(1001,new Notification());
-			Intent sendIntend = new Intent(this,SlaveService.class);
-			startService(sendIntend);
-		}
+//		Toast.makeText(this,"Service started",Toast.LENGTH_SHORT).show();
+////利用notification提升进程权限
+//		if(Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2){
+//			startForeground(1001,new Notification());
+//		}else {
+//			startForeground(1001,new Notification());
+//			Intent sendIntend = new Intent(this,SlaveService.class);
+//			startService(sendIntend);
+//		}
 
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				while (1==1){
-
-					Log.d("PushService", "run: "+System.currentTimeMillis());
-					Log.d("PushService", "run: Process.myPid() "+ Process.myPid());
-					Log.d("", "run: -----"+Utils.getProcessOomAdj(Process.myPid()));
+				for (int i = 0; i <100;i++){
+					Log.d("PushService", "run: -----"+Utils.getProcessOomAdj(Process.myPid()));
 //					handler.sendEmptyMessage(0);
 					try {
 						Thread.sleep(2000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
+					}
+					if(i == 10){
+						Log.d("", "run: stop");
+						Process.killProcess(Process.myPid());
 					}
 				}
 			}
@@ -76,6 +77,5 @@ public class PushService extends Service{
 	public void onDestroy() {
 		super.onDestroy();
 		Toast.makeText(this,"Service destroy",Toast.LENGTH_SHORT).show();
-
 	}
 }

@@ -45,6 +45,7 @@ public class InnerReceiver extends BroadcastReceiver{
 			if (reason != null) {
 				if (reason.equals(SYSTEM_DIALOG_REASON_HOME_KEY)) {
 					Toast.makeText(context, "Home键被监听", Toast.LENGTH_SHORT).show();
+					increasePritorityByNotification();
 //kill or increase
 ////					Log.d("", "onReceive: -----"+Utils.getProcessOomAdj(Process.myPid()));//获取当前进程oom_adj
 				} else if (reason.equals(SYSTEM_DIALOG_REASON_RECENT_APPS)) {
@@ -53,18 +54,6 @@ public class InnerReceiver extends BroadcastReceiver{
 			}
 		}
 
-		if (Intent.ACTION_SCREEN_OFF.equals(action)){
-			Log.d("", "onReceive: start OnePix");
-			Intent intent2 = new Intent(context,OnePixActivity.class);
-			intent2.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
-			context.startActivity(intent2);
-		}else if(Intent.ACTION_USER_PRESENT.equals(action) || Intent.ACTION_SCREEN_ON.equals(action)){
-			Log.d("", "onReceive: close OnePix");
-			OnePixActivity onePixActivity = OnePixActivity.instance != null ? OnePixActivity.instance.get():null;
-			if(onePixActivity != null){
-				onePixActivity.finishSelf();
-			}
-		}
 	}
 
 	//进程杀死
@@ -99,6 +88,21 @@ public class InnerReceiver extends BroadcastReceiver{
 
 	private void increasePritorityByNotification(){
 		context.startService(new Intent(((Activity)context).getBaseContext(),PushService.class));
+	}
+
+	private void byActivity(){
+//		if (Intent.ACTION_SCREEN_OFF.equals(action)){
+//			Log.d("", "onReceive: start OnePix");
+//			Intent intent2 = new Intent(context,OnePixActivity.class);
+//			intent2.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+//			context.startActivity(intent2);
+//		}else if(Intent.ACTION_USER_PRESENT.equals(action) || Intent.ACTION_SCREEN_ON.equals(action)){
+//			Log.d("", "onReceive: close OnePix");
+//			OnePixActivity onePixActivity = OnePixActivity.instance != null ? OnePixActivity.instance.get():null;
+//			if(onePixActivity != null){
+//				onePixActivity.finishSelf();
+//			}
+//		}
 	}
 }
 

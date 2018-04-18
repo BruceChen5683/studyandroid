@@ -77,6 +77,34 @@
                 <action android:name="android.intent.action.SCREEN_OFF"></action>
             </intent-filter>
         </activity>
+
+
+        <receiver android:name=".keepalive.SystemReceiver"
+                  android:process=":main">
+            <intent-filter >
+                <action android:name="android.intent.action.USER_PRESENT"></action>
+
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="com.android.camera.NEW_PICTURE" />
+                <action android:name="android.hardware.action.NEW_PICTURE" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED"/>
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+
+                <data android:scheme="package"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
