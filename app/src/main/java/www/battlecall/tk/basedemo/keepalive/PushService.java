@@ -1,7 +1,12 @@
 package www.battlecall.tk.basedemo.keepalive;
 
+import android.app.AlarmManager;
 import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.Service;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -9,6 +14,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Process;
+import android.os.SystemClock;
 import android.support.annotation.IntDef;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -19,6 +25,9 @@ import android.widget.Toast;
  */
 
 public class PushService extends Service{
+
+	private final static long WAKE_INTERVAL = 2 * 60 * 1000;
+
 
 //	private Context context;
 //	public PushService(Context context){
@@ -58,6 +67,28 @@ public class PushService extends Service{
 //			startService(sendIntend);
 //		}
 
+
+
+		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+			JobScheduler jobScheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
+			jobScheduler.cancelAll();
+			JobInfo.Builder builder = new JobInfo.Builder(1024,new ComponentName(getPackageName(),ScheduleService.class.getName()));
+			builder.setPeriodic(WAKE_INTERVAL);
+			builder.setPersisted(true);
+			builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
+			 int schedule = jobScheduler.schedule(builder.build());
+			if(schedule <= 0){
+				Log.e("", "onStartCommand: schedule error");
+			}
+		}else {
+			AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
+			Intent alarmIntent = new Intent(getApplication(),PushService.class);
+			PendingIntent pI = PendingIntent.getService(getApplicationContext(),1024,alarmIntent,PendingIntent.FLAG_UPDATE_CURRENT);
+			am.cancel(pI);
+			am.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime()+WAKE_INTERVAL,WAKE_INTERVAL,pI);
+		}
+
+
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -86,7 +117,7 @@ public class PushService extends Service{
 	public void onDestroy() {
 		super.onDestroy();
 
-		Intent intent = new Intent(getApplicationContext(),PushService.class);
-		startService(intent);
+//		Intent intent = new Intent(getApplicationContext(),PushService.class);
+//		startService(intent);
 	}
 }

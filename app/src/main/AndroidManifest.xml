@@ -105,6 +105,11 @@
                 <data android:scheme="package"/>
             </intent-filter>
         </receiver>
+
+        <service android:name=".keepalive.ScheduleService"
+            android:permission="android.permission.BIND_JOB_SERVICE">
+
+        </service>
     </application>
 
 </manifest>
