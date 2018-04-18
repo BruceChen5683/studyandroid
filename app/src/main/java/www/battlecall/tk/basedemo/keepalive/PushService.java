@@ -32,6 +32,13 @@ public class PushService extends Service{
 //		}
 //	};
 
+
+	@Override
+	public void onCreate() {
+		super.onCreate();
+		Log.d("PushService", "onCreate: ");
+	}
+
 	@Nullable
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -40,6 +47,7 @@ public class PushService extends Service{
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
+		Log.d("PushService", "onStartCommand: ");
 //		Toast.makeText(this,"Service started",Toast.LENGTH_SHORT).show();
 ////利用notification提升进程权限
 //		if(Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2){
@@ -55,6 +63,7 @@ public class PushService extends Service{
 			public void run() {
 				for (int i = 0; i <100;i++){
 					Log.d("PushService", "run: -----"+Utils.getProcessOomAdj(Process.myPid()));
+					Log.d("PushService", "run: "+Thread.currentThread().getName());
 //					handler.sendEmptyMessage(0);
 					try {
 						Thread.sleep(2000);
@@ -63,7 +72,7 @@ public class PushService extends Service{
 					}
 					if(i == 10){
 						Log.d("", "run: stop");
-						Process.killProcess(Process.myPid());
+						onDestroy();
 					}
 				}
 			}
@@ -76,6 +85,8 @@ public class PushService extends Service{
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		Toast.makeText(this,"Service destroy",Toast.LENGTH_SHORT).show();
+
+		Intent intent = new Intent(getApplicationContext(),PushService.class);
+		startService(intent);
 	}
 }

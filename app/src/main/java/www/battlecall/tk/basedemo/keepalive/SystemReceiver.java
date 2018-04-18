@@ -14,6 +14,6 @@ public class SystemReceiver extends BroadcastReceiver{
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		Log.d("SystemReceiver", "onReceive: ");
-		context.startService(new Intent(context,PushService.class));
+//		context.startService(new Intent(context,PushService.class));
 	}
 }
