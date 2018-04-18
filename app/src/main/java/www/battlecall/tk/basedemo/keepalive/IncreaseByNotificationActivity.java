@@ -1,38 +1,34 @@
 package www.battlecall.tk.basedemo.keepalive;
 
-import android.app.Service;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.os.Process;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import www.battlecall.tk.basedemo.R;
 
-public class OnePxActivity extends AppCompatActivity {
+public class IncreaseByNotificationActivity extends AppCompatActivity {
 
+	private final static String TAG = IncreaseByNotificationActivity.class.getSimpleName();
 	private InnerReceiver innerReceiver;
 //	private Handler handler = new Handler(){
 //		@Override
 //		public void handleMessage(Message msg) {
 //			super.handleMessage(msg);
-//			Toast.makeText(OnePxActivity.this,"----------- "+System.currentTimeMillis(),Toast.LENGTH_SHORT).show();
+//			Toast.makeText(IncreaseByNotificationActivity.this,"----------- "+System.currentTimeMillis(),Toast.LENGTH_SHORT).show();
 //		}
 //	};
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_one_px);
-
-		Log.d("OnePxActivity", "onCreate: ");
+		setContentView(R.layout.activity_increase_priority);
 
 		innerReceiver = new InnerReceiver(this);
-		IntentFilter intentFilter = new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
+		IntentFilter intentFilter = new IntentFilter();
+		intentFilter.addAction(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
+		intentFilter.addAction(Intent.ACTION_SCREEN_ON);
+		intentFilter.addAction(Intent.ACTION_SCREEN_OFF);
 		registerReceiver(innerReceiver,intentFilter);
 
 //		new Thread(new Runnable() {
@@ -40,8 +36,8 @@ public class OnePxActivity extends AppCompatActivity {
 //			public void run() {
 //				while (1==1){
 //
-////					Log.d("OnePxActivity", "run: "+System.currentTimeMillis());
-//					Log.d("", "run: Process.myPid() "+Process.myPid());
+//					Log.d(TAG, "run: "+System.currentTimeMillis());
+////					Log.d("", "run: Process.myPid() "+Process.myPid());
 ////					Log.d("", "run: -----"+Utils.getProcessOomAdj(Process.myPid()));
 ////					handler.sendEmptyMessage(0);
 //					try {

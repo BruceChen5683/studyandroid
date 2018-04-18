@@ -37,41 +37,68 @@ public class InnerReceiver extends BroadcastReceiver{
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		String action = intent.getAction();
+		Log.d("", "onReceive:  action "+action);
 		if (Intent.ACTION_CLOSE_SYSTEM_DIALOGS.equals(action)) {
 			String reason = intent.getStringExtra(SYSTEM_DIALOG_REASON_KEY);
+			Log.d("", "onReceive:  reason "+reason);
+
 			if (reason != null) {
 				if (reason.equals(SYSTEM_DIALOG_REASON_HOME_KEY)) {
 					Toast.makeText(context, "Home键被监听", Toast.LENGTH_SHORT).show();
-					context.startService(new Intent(((Activity)context).getBaseContext(),PushService.class));
-//进程杀死方法
-//					final ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-////					activityManager.killBackgroundProcesses(context.getPackageName());
-////					Process.killProcess(Process.myPid());
+//kill or increase
 ////					Log.d("", "onReceive: -----"+Utils.getProcessOomAdj(Process.myPid()));//获取当前进程oom_adj
-//
-//
-//					Class clazz = null;
-//					try {
-//						clazz = Class.forName("android.app.ActivityManager");
-//						Method method = clazz.getMethod("forceStopPackage", new Class[]{String.class});
-//						method.setAccessible(true);
-//						method.invoke(activityManager,context.getPackageName());
-//					} catch (ClassNotFoundException e) {
-//						e.printStackTrace();
-//					} catch (NoSuchMethodException e) {
-//						e.printStackTrace();
-//					} catch (IllegalAccessException e) {
-//						e.printStackTrace();
-//					} catch (InvocationTargetException e) {
-//						e.printStackTrace();
-//					}
-
-
 				} else if (reason.equals(SYSTEM_DIALOG_REASON_RECENT_APPS)) {
 					Toast.makeText(context, "多任务键被监听", Toast.LENGTH_SHORT).show();
 				}
 			}
 		}
+
+		if (Intent.ACTION_SCREEN_OFF.equals(action)){
+			Log.d("", "onReceive: start OnePix");
+			Intent intent2 = new Intent(context,OnePixActivity.class);
+			intent2.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK);
+			context.startActivity(intent2);
+		}else if(Intent.ACTION_USER_PRESENT.equals(action) || Intent.ACTION_SCREEN_ON.equals(action)){
+			Log.d("", "onReceive: close OnePix");
+			OnePixActivity onePixActivity = OnePixActivity.instance != null ? OnePixActivity.instance.get():null;
+			if(onePixActivity != null){
+				onePixActivity.finishSelf();
+			}
+		}
+	}
+
+	//进程杀死
+	private void myKill(){
+
+//		//1.
+//		final ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+//		Class clazz = null;
+//		try {
+//			clazz = Class.forName("android.app.ActivityManager");
+//			Method method = clazz.getMethod("forceStopPackage", new Class[]{String.class});
+//			method.setAccessible(true);
+//			method.invoke(activityManager,context.getPackageName());
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (NoSuchMethodException e) {
+//			e.printStackTrace();
+//		} catch (IllegalAccessException e) {
+//			e.printStackTrace();
+//		} catch (InvocationTargetException e) {
+//			e.printStackTrace();
+//		}
+
+
+		//2.
+		final ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+		activityManager.killBackgroundProcesses(context.getPackageName());
+//
+//		//3.
+//		Process.killProcess(Process.myPid());
+	}
+
+	private void increasePritorityByNotification(){
+		context.startService(new Intent(((Activity)context).getBaseContext(),PushService.class));
 	}
 }
 
