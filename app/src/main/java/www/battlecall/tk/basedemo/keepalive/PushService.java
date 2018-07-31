@@ -72,10 +72,12 @@ public class PushService extends Service{
 		if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
 			JobScheduler jobScheduler = (JobScheduler) getSystemService(Context.JOB_SCHEDULER_SERVICE);
 			jobScheduler.cancelAll();
+
 			JobInfo.Builder builder = new JobInfo.Builder(1024,new ComponentName(getPackageName(),ScheduleService.class.getName()));
 			builder.setPeriodic(WAKE_INTERVAL);
 			builder.setPersisted(true);
 			builder.setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY);
+
 			 int schedule = jobScheduler.schedule(builder.build());
 			if(schedule <= 0){
 				Log.e("", "onStartCommand: schedule error");

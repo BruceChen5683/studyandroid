@@ -1,0 +1,88 @@
+ECLIPSE ANDROID PROJECT IMPORT SUMMARY
+======================================
+
+Ignored Files:
+--------------
+The following files were *not* copied into the new Gradle project; you
+should evaluate whether these are still needed in your project and if
+so manually move them:
+
+* .gitignore
+* AndroidManifest.xml
+* assets\
+* assets\rawso
+* assets\sohuplayersdk_impl.jar
+* ic_launcher-web.png
+* lint.xml
+* proguard-project.txt
+* res\
+* res\drawable-hdpi\
+* res\drawable-hdpi\ic_launcher.png
+* res\drawable-mdpi\
+* res\drawable-mdpi\ic_launcher.png
+* res\drawable-xhdpi\
+* res\drawable-xhdpi\ic_launcher.png
+* res\drawable-xxhdpi\
+* res\drawable-xxhdpi\ic_launcher.png
+* res\drawable\
+* res\drawable\fastleft.png
+* res\drawable\fastright.png
+* res\drawable\tv_player_stop.png
+* res\layout\
+* res\layout\activity_demoplayer.xml
+* res\layout\activity_main.xml
+* res\layout\activity_player.xml
+* res\values-hdpi\
+* res\values-hdpi\dimens.xml
+* res\values-v11\
+* res\values-v11\styles.xml
+* res\values-v14\
+* res\values-v14\styles.xml
+* res\values-w820dp\
+* res\values-w820dp\dimens.xml
+* res\values\
+* res\values\attrs.xml
+* res\values\colors.xml
+* res\values\dimens.xml
+* res\values\strings.xml
+* res\values\styles.xml
+
+Moved Files:
+------------
+Android Gradle projects use a different directory structure than ADT
+Eclipse projects. Here's how the projects were restructured:
+
+* libs\android-support-v7.jar => mainActivity\libs\android-support-v7.jar
+* libs\armeabi\libadsdkJni.so => mainActivity\src\main\jniLibs\armeabi\libadsdkJni.so
+* libs\armeabi\libcde.so => mainActivity\src\main\jniLibs\armeabi\libcde.so
+* libs\armeabi\libDecRes.so => mainActivity\src\main\jniLibs\armeabi\libDecRes.so
+* libs\armeabi\libffmpeg.so => mainActivity\src\main\jniLibs\armeabi\libffmpeg.so
+* libs\armeabi\libffplay.so => mainActivity\src\main\jniLibs\armeabi\libffplay.so
+* libs\armeabi\libluajava_moretv.so => mainActivity\src\main\jniLibs\armeabi\libluajava_moretv.so
+* libs\armeabi\libsecurity.so => mainActivity\src\main\jniLibs\armeabi\libsecurity.so
+* libs\ClientAIDLSdk-1.0.3.jar => mainActivity\libs\ClientAIDLSdk-1.0.3.jar
+* libs\ClientSdk-1.0.3.jar => mainActivity\libs\ClientSdk-1.0.3.jar
+* libs\Domainlib-1.0.3.jar => mainActivity\libs\Domainlib-1.0.3.jar
+* libs\middleware-player.jar => mainActivity\libs\middleware-player.jar
+* libs\middleware-tvbase-v3.jar => mainActivity\libs\middleware-tvbase-v3.jar
+* libs\middleware-videoparser.jar => mainActivity\libs\middleware-videoparser.jar
+* libs\middleware_dynamic.jar => mainActivity\libs\middleware_dynamic.jar
+* libs\Security.jar => mainActivity\libs\Security.jar
+* libs\soautoupgrade.jar => mainActivity\libs\soautoupgrade.jar
+* libs\unisdk_shell.jar => mainActivity\libs\unisdk_shell.jar
+* src\ => mainActivity\src\main\java\
+
+Next Steps:
+-----------
+You can now build the project. The Gradle project needs network
+connectivity to download dependencies.
+
+Bugs:
+-----
+If for some reason your project does not build, and you determine that
+it is due to a bug or limitation of the Eclipse to Gradle importer,
+please file a bug at http://b.android.com with category
+Component-Tools.
+
+(This import summary is for your information only, and can be deleted
+after import once you are satisfied with the results.)
