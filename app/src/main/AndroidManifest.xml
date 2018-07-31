@@ -138,6 +138,32 @@
 
         <activity android:name=".activity.LifecycleActivity">
         </activity>
+        <activity android:name=".activity.StartupModeActivityA">
+        </activity>
+        <activity
+            android:name=".activity.StartupModeActivityStandard"
+            android:launchMode="standard">
+        </activity>
+        <activity
+            android:name=".activity.StartupModeActivitySingleTop"
+            android:launchMode="singleTop">
+        </activity>
+        <activity
+            android:name=".activity.StartupModeActivitySingTask"
+            android:launchMode="singleTask">
+        </activity>
+        <activity
+            android:name=".activity.StartupModeActivitySingleInstance"
+            android:launchMode="singleInstance">
+        </activity>
+        <activity android:name=".activity.SchemeActivity">
+            <intent-filter>
+                <data android:scheme="mycheme"></data>
+                <category android:name="android.intent.category.DEFAULT"></category>
+                <category android:name="android.intent.category.BROWSABLE"></category>
+                <action android:name="android.intent.action.VIEW"></action>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
