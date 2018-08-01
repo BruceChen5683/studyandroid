@@ -48,7 +48,7 @@ public class MyService extends Service {
 		Log.d("cjl", "MyService ---------onCreate:      ");
 //		mHandler.postDelayed(mTask,DELAY);
 
-		thread = new Thread(new Runnable() {
+		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				while (!quit){
