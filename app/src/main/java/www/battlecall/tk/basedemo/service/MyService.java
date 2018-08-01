@@ -37,6 +37,7 @@ public class MyService extends Service {
 	@Override
 	public IBinder onBind(Intent intent) {
 		// TODO: Return the communication channel to the service
+		Log.d("cjl", "MyService ---------onBind:      ");
 		return binder;
 //		throw new UnsupportedOperationException("Not yet implemented");
 	}

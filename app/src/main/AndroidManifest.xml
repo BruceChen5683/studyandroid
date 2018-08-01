@@ -176,6 +176,12 @@
 
         <activity android:name=".service.ServiceActivity">
         </activity>
+
+        <service
+            android:name=".service.MessengerService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
     </application>
 
 </manifest>

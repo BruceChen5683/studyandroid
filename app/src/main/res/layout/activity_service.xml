@@ -20,4 +20,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="stopService"/>
+
+    <Button
+        android:id="@+id/bindSerice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="bindSerice"/>
+
+    <Button
+        android:id="@+id/unbindservice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="unbindservice"/>
+
+    <Button
+        android:id="@+id/getCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="getCount"/>
 </LinearLayout>
