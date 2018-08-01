@@ -3,6 +3,7 @@ package www.battlecall.tk.basedemo.service;
 import android.app.Service;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.os.Binder;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.annotation.IntDef;
@@ -12,21 +13,32 @@ public class MyService extends Service {
 
 	private final int DELAY = 2000;
 
-	private Handler mHandler = new Handler();
-	private Runnable mTask =  new Runnable(){
-		@Override
-		public void run() {
-			Log.d("cjl", "MyService ---------run:      "+DELAY/1000+"  s after");
-			Integer.parseInt("ok");
+	private LocalBinder binder = new LocalBinder();
+	private Thread thread;
+	private boolean quit;
+	private int count;
+
+	public class LocalBinder extends Binder{
+		MyService getService(){
+			return MyService.this;
 		}
-	};
+	}
+//	private Handler mHandler = new Handler();
+//	private Runnable mTask =  new Runnable(){
+//		@Override
+//		public void run() {
+//			Log.d("cjl", "MyService ---------run:      "+DELAY/1000+"  s after");
+//			Integer.parseInt("ok");
+//		}
+//	};
 	public MyService() {
 	}
 
 	@Override
 	public IBinder onBind(Intent intent) {
-		// TODO: Return the communication channel to the service.
-		throw new UnsupportedOperationException("Not yet implemented");
+		// TODO: Return the communication channel to the service
+		return binder;
+//		throw new UnsupportedOperationException("Not yet implemented");
 	}
 
 
@@ -34,11 +46,34 @@ public class MyService extends Service {
 	public void onCreate() {
 		super.onCreate();
 		Log.d("cjl", "MyService ---------onCreate:      ");
-		mHandler.postDelayed(mTask,DELAY);
+//		mHandler.postDelayed(mTask,DELAY);
+
+		thread = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				while (!quit){
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					count++;
+				}
+			}
+		}).start();
+	}
+	
+	public int getCount(){
+		return count;
 	}
 
+	@Override
+	public boolean onUnbind(Intent intent) {
+		Log.d("cjl", "MyService ---------onUnbind:      ");
+		return super.onUnbind(intent);
+	}
 
-//	START_STICKY
+	//	START_STICKY
 // 08-01 11:52:57.425 28062-28062/www.battlecall.tk.basedemo D/cjl: MyService ---------onCreate:
 //			08-01 11:52:57.425 28062-28062/www.battlecall.tk.basedemo D/cjl: MyService ---------onStartCommand:      startId  1
 //			08-01 11:52:57.425 28062-28062/www.battlecall.tk.basedemo D/cjl: MyService ---------onStartCommand:      intent Intent { cmp=www.battlecall.tk.basedemo/.service.MyService }
@@ -87,6 +122,7 @@ public class MyService extends Service {
 
 	@Override
 	public void onDestroy() {
+		this.quit = true;
 		super.onDestroy();
 		Log.d("cjl", "MyService ---------onDestroy:      ");
 	}
