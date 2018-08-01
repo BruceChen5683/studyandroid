@@ -116,13 +116,13 @@
             android:permission="android.permission.BIND_JOB_SERVICE">
         </service>
 
-        <activity android:name=".broadcast.InterceptActivity">
+        <activity android:name=".broadcast.BroadCastActivity">
         </activity>
 
         <receiver android:name=".broadcast.MyBroadCastOne">
             <intent-filter android:priority="1000">
                 <action android:name="cjl.broadcast.test"/>
-                <!-- <category android:name="android.intent.category.DEFAULT"></category> -->
+                 <category android:name="android.intent.category.DEFAULT"></category>
             </intent-filter>
         </receiver>
         <receiver android:name=".broadcast.MyBroadCastTwo">

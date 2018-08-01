@@ -5,12 +5,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="www.battlecall.tk.basedemo.broadcast.InterceptActivity">
+    tools:context="www.battlecall.tk.basedemo.broadcast.BroadCastActivity">
 
     <Button
         android:id="@+id/btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="click"
+        android:text="sendOrderedBroadcast"
+        android:layout_centerInParent="true"/>
+
+    <Button
+        android:id="@+id/btnLocal"
+        android:layout_below="@id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Local"
+        android:layout_centerInParent="true"/>
+
+    <Button
+        android:id="@+id/btnLocalSync"
+        android:layout_below="@id/btnLocal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="btnLocalSync"
         android:layout_centerInParent="true"/>
 </RelativeLayout>
