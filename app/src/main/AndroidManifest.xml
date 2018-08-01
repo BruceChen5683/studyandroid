@@ -122,7 +122,8 @@
         <receiver android:name=".broadcast.MyBroadCastOne">
             <intent-filter android:priority="1000">
                 <action android:name="cjl.broadcast.test"/>
-                 <category android:name="android.intent.category.DEFAULT"></category>
+
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </receiver>
         <receiver android:name=".broadcast.MyBroadCastTwo">
@@ -158,11 +159,22 @@
         </activity>
         <activity android:name=".activity.SchemeActivity">
             <intent-filter>
-                <data android:scheme="mycheme"></data>
-                <category android:name="android.intent.category.DEFAULT"></category>
-                <category android:name="android.intent.category.BROWSABLE"></category>
-                <action android:name="android.intent.action.VIEW"></action>
+                <data android:scheme="mycheme"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+
+                <action android:name="android.intent.action.VIEW"/>
             </intent-filter>
+        </activity>
+
+        <service
+            android:name=".service.MyService"
+            android:enabled="true"
+            android:exported="true">
+        </service>
+
+        <activity android:name=".service.ServiceActivity">
         </activity>
     </application>
 
