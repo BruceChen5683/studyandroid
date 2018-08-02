@@ -4,6 +4,7 @@ import android.app.Notification;
 import android.app.Service;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.IntDef;
 import android.support.v4.app.NotificationCompat;
@@ -41,13 +42,13 @@ public class ForegroundService extends Service {
 		builder.setContentTitle("foreground service");
 		Notification notification = builder.build();
 		startForeground(NOTIFICATION_DOWNLOAD_PROGRESS_ID,notification);
-
 		Log.d("cjl", "ForegroundService ---------createNotification:    notification  "+notification.visibility);
 	}
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
 		int i = intent.getExtras().getInt("cmd");
+		Log.d("cjl", "ForegroundService ---------onStartCommand:      i "+i);
 		if (i == 0){
 			if(!isRemove){
 				createNotification();

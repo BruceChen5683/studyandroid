@@ -191,6 +191,9 @@
             android:name=".service.ForegroundService"
             android:enabled="true"
             android:exported="true">
+            <intent-filter>
+                <action android:name="cjl.myForegroundService"></action>
+            </intent-filter>
         </service>
     </application>
 

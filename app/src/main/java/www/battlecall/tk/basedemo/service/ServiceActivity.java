@@ -2,8 +2,11 @@ package www.battlecall.tk.basedemo.service;
 
 import android.app.Service;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -14,6 +17,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+
+import java.util.List;
 
 import www.battlecall.tk.basedemo.R;
 
@@ -126,8 +131,7 @@ public class ServiceActivity extends AppCompatActivity implements View.OnClickLi
 	}
 	@Override
 	public void onClick(View v) {
-		Intent intent = new Intent();
-
+		 Intent intent = new Intent();
 		switch (v.getId()){
 			case R.id.startService:
 				intent.setClass(ServiceActivity.this,MyService.class);
@@ -169,17 +173,52 @@ public class ServiceActivity extends AppCompatActivity implements View.OnClickLi
 			case R.id.sayHi:
 				Log.d("cjl", "ServiceActivity ---------onClick:      android.os.Process.myPid() "+android.os.Process.myPid());
 				sayHi(v);
+				break;
 
 			case R.id.startForeford:
-				intent.setClass(ServiceActivity.this,ForegroundService.class);
-				intent.putExtra("cmd",0);
-				startService(intent);
+//				intent.setClass(ServiceActivity.this,ForegroundService.class);
+//				intent.setPackage(getPackageName());
+				intent.setAction("cjl.myForegroundService");
+				final Intent serviceIntent = new Intent(getExplicitIntent(ServiceActivity.this,intent));
+				serviceIntent.putExtra("cmd",0);
+				startService(serviceIntent);
+				break;
 			case R.id.stopForeford:
-				intent.setClass(ServiceActivity.this,ForegroundService.class);
-				intent.putExtra("cmd",1);//0 start 1 close
-				startService(intent);
+				Log.d("cjl", "ServiceActivity ---------onClick:   stopForeford   ");
+
+//				intent.setClass(ServiceActivity.this,ForegroundService.class);
+//				intent.putExtra("cmd",1);//0 start 1 close
+
+				intent.setAction("cjl.myForegroundService");
+				final Intent serviceIntent1 = new Intent(getExplicitIntent(ServiceActivity.this,intent));
+				serviceIntent1.putExtra("cmd",1);
+				startService(serviceIntent1);
+//				startService(intent);
+				break;
 			default:
 				break;
 		}
+	}
+
+	public static Intent getExplicitIntent(Context context, Intent implicitIntent) {
+		Log.d("cjl", "ServiceActivity ---------getExplicitIntent:      ");
+		// Retrieve all services that can match the given intent
+		PackageManager pm = context.getPackageManager();
+		List<ResolveInfo> resolveInfo = pm.queryIntentServices(implicitIntent, 0);
+		// Make sure only one match was found
+		if (resolveInfo == null || resolveInfo.size() != 1) {
+			Log.d("cjl", "ServiceActivity ---------getExplicitIntent:      null");
+			return null;
+		}
+		// Get component info and create ComponentName
+		ResolveInfo serviceInfo = resolveInfo.get(0);
+		String packageName = serviceInfo.serviceInfo.packageName;
+		String className = serviceInfo.serviceInfo.name;
+		ComponentName component = new ComponentName(packageName, className);
+		// Create a new intent. Use the old one for extras and such reuse
+		Intent explicitIntent = new Intent(implicitIntent);
+		// Set the component to be explicit
+		explicitIntent.setComponent(component);
+		return explicitIntent;
 	}
 }
