@@ -179,9 +179,13 @@
 
         <service
             android:name=".service.MessengerService"
+            android:process=":remote"
             android:enabled="true"
             android:exported="true">
         </service>
+
+        <activity android:name=".service.StartServiceActivity">
+        </activity>
     </application>
 
 </manifest>

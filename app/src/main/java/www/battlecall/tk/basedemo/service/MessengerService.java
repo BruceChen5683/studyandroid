@@ -9,7 +9,7 @@ import android.os.Messenger;
 import android.util.Log;
 
 public class MessengerService extends Service {
-	private static final int MSG_SAY_HI = 1;
+	public static final int MSG_SAY_HI = 1;
 	public MessengerService() {
 	}
 
@@ -18,7 +18,9 @@ public class MessengerService extends Service {
 		public void handleMessage(Message msg) {
 			switch (msg.what){
 				case MSG_SAY_HI:
-					Log.d("cjl", "IncomingHander ---------handleMessage:     hi ");
+					int pid = android.os.Process.myPid();//获取进程pid
+
+					Log.d("cjl", "IncomingHander ---------handleMessage:     hi "+pid);
 					break;
 				default:
 					super.handleMessage(msg);
@@ -29,6 +31,7 @@ public class MessengerService extends Service {
 
 	@Override
 	public IBinder onBind(Intent intent) {
+		Log.d("cjl", "MessengerService ---------onBind:      "+android.os.Process.myPid());
 		return messenger.getBinder();
 	}
 
