@@ -50,7 +50,9 @@ public class ForegroundService extends Service {
 		int i = intent.getExtras().getInt("cmd");
 		Log.d("cjl", "ForegroundService ---------onStartCommand:      i "+i);
 		if (i == 0){
+			Log.d("cjl", "ForegroundService ---------onStartCommand:      1");
 			if(!isRemove){
+				Log.d("cjl", "ForegroundService ---------onStartCommand:      2");
 				createNotification();
 			}
 			isRemove = true;
@@ -71,4 +73,14 @@ public class ForegroundService extends Service {
 		isRemove = false;
 		super.onDestroy();
 	}
+	/**
+	 *如何保证服务不被杀死
+	 *onStartCommand  返回 START_STICKY或START_REDELIVER_INTENT
+	 *
+	 * ondestroy A，Bservice互相启动
+	 *
+	 *
+	 * forceStop不可强制结束？
+	 *
+	 * */
 }

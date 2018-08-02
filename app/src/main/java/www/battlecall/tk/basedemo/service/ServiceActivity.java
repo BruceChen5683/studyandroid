@@ -201,13 +201,11 @@ public class ServiceActivity extends AppCompatActivity implements View.OnClickLi
 	}
 
 	public static Intent getExplicitIntent(Context context, Intent implicitIntent) {
-		Log.d("cjl", "ServiceActivity ---------getExplicitIntent:      ");
 		// Retrieve all services that can match the given intent
 		PackageManager pm = context.getPackageManager();
 		List<ResolveInfo> resolveInfo = pm.queryIntentServices(implicitIntent, 0);
 		// Make sure only one match was found
 		if (resolveInfo == null || resolveInfo.size() != 1) {
-			Log.d("cjl", "ServiceActivity ---------getExplicitIntent:      null");
 			return null;
 		}
 		// Get component info and create ComponentName
