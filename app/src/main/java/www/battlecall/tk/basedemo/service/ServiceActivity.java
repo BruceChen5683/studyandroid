@@ -19,7 +19,7 @@ import www.battlecall.tk.basedemo.R;
 
 public class ServiceActivity extends AppCompatActivity implements View.OnClickListener{
 
-	private Button btnStartservice,btnStopservice,btnBindservice,btnUnBindservice,btnCount,btnsayHi;
+	private Button btnStartservice,btnStopservice,btnBindservice,btnUnBindservice,btnCount,btnsayHi,btnstartForeford,btnstopForeford;
 
 	private ServiceConnection conn;
 //	private MyService mService;
@@ -52,6 +52,8 @@ public class ServiceActivity extends AppCompatActivity implements View.OnClickLi
 		btnUnBindservice = findViewById(R.id.unbindservice);
 		btnCount = findViewById(R.id.getCount);
 		btnsayHi = findViewById(R.id.sayHi);
+		btnstartForeford = findViewById(R.id.startForeford);
+		btnstopForeford = findViewById(R.id.stopForeford);
 
 		btnStartservice.setOnClickListener(this);
 		btnStopservice.setOnClickListener(this);
@@ -59,6 +61,8 @@ public class ServiceActivity extends AppCompatActivity implements View.OnClickLi
 		btnUnBindservice.setOnClickListener(this);
 		btnCount.setOnClickListener(this);
 		btnsayHi.setOnClickListener(this);
+		btnstartForeford.setOnClickListener(this);
+		btnstopForeford.setOnClickListener(this);
 
 		conn = new ServiceConnection() {
 			@Override
@@ -166,6 +170,14 @@ public class ServiceActivity extends AppCompatActivity implements View.OnClickLi
 				Log.d("cjl", "ServiceActivity ---------onClick:      android.os.Process.myPid() "+android.os.Process.myPid());
 				sayHi(v);
 
+			case R.id.startForeford:
+				intent.setClass(ServiceActivity.this,ForegroundService.class);
+				intent.putExtra("cmd",0);
+				startService(intent);
+			case R.id.stopForeford:
+				intent.setClass(ServiceActivity.this,ForegroundService.class);
+				intent.putExtra("cmd",1);//0 start 1 close
+				startService(intent);
 			default:
 				break;
 		}

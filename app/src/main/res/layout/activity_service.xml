@@ -47,4 +47,16 @@
         android:text="SayHi..."/>
 
 
+    <Button
+        android:id="@+id/startForeford"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="startForeford..."/>
+
+    <Button
+        android:id="@+id/stopForeford"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="stopForeford..."/>
+
 </LinearLayout>
