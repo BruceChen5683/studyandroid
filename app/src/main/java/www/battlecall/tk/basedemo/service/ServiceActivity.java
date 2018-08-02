@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
@@ -24,6 +25,20 @@ public class ServiceActivity extends AppCompatActivity implements View.OnClickLi
 //	private MyService mService;
 	private Messenger mService;
 	private boolean mFlag;
+
+	Messenger receiverMessenger = new Messenger(new ReceiverMsgHander());
+	private static class ReceiverMsgHander extends Handler{
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what){
+				case MessengerService.MSG_SAY_HI:
+					Log.d("cjl", "ReceiverMsgHander ---------handleMessage:      "+msg.getData().get("reply"));
+					break;
+				default:
+					break;
+			}
+		}
+	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -98,6 +113,7 @@ public class ServiceActivity extends AppCompatActivity implements View.OnClickLi
 		}
 
 		Message msg = Message.obtain(null,MessengerService.MSG_SAY_HI,0,0);
+		msg.replyTo = receiverMessenger;
 		try {
 			mService.send(msg);
 		} catch (RemoteException e) {
