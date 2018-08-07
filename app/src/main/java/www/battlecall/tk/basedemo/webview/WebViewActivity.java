@@ -44,6 +44,7 @@ public class WebViewActivity extends AppCompatActivity {
 		mWebSettings = mWebView.getSettings();
 		mWebSettings.setJavaScriptEnabled(true);
 		mWebSettings.setJavaScriptCanOpenWindowsAutomatically(true);
+		mWebSettings.setAppCacheEnabled(false);
 
 
 //		mWebView.loadUrl("http://www.baidu.com/");
@@ -76,27 +77,32 @@ public class WebViewActivity extends AppCompatActivity {
 //
 //		});
 
-		mWebView.loadUrl("file:///android_asset/callAndroidJs3.html");
-		mWebView.setWebChromeClient(new WebChromeClient(){
-			@Override
-			public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, JsPromptResult result) {//or onJsAlert onJsConfirm
-				Log.d("cjl", "WebViewActivity ---------onJsPrompt:      url "+url);
-				Log.d("cjl", "WebViewActivity ---------onJsPrompt:      message"+message);
-				Uri uri = Uri.parse(message);
+//		mWebView.loadUrl("file:///android_asset/callAndroidJs3.html");
 
-				Log.d("cjl", "WebViewActivity ---------onJsPrompt:      "+uri.getScheme());
-				Log.d("cjl", "WebViewActivity ---------onJsPrompt:      "+uri.getAuthority());
-				if(uri.getScheme().equals("js")){
-					if(uri.getAuthority().equals("test3")){
-						Log.d("cjl", "WebViewActivity ---------onJsPrompt:      調用Android");
+		mWebView.addJavascriptInterface(new WebappInterface(),"interfaceObj");
 
-						result.confirm("js調用了android的方法成功");
-					}
-					return true;
-				}
-				return super.onJsPrompt(view, url, message, defaultValue, result);
-			}
-		});
+		mWebView.loadUrl("http://192.168.1.153:8080/auto/attack.html");
+
+//		mWebView.setWebChromeClient(new WebChromeClient(){
+//			@Override
+//			public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, JsPromptResult result) {//or onJsAlert onJsConfirm
+//				Log.d("cjl", "WebViewActivity ---------onJsPrompt:      url "+url);
+//				Log.d("cjl", "WebViewActivity ---------onJsPrompt:      message"+message);
+//				Uri uri = Uri.parse(message);
+//
+//				Log.d("cjl", "WebViewActivity ---------onJsPrompt:      "+uri.getScheme());
+//				Log.d("cjl", "WebViewActivity ---------onJsPrompt:      "+uri.getAuthority());
+//				if(uri.getScheme().equals("js")){
+//					if(uri.getAuthority().equals("test3")){
+//						Log.d("cjl", "WebViewActivity ---------onJsPrompt:      調用Android");
+//
+//						result.confirm("js調用了android的方法成功");
+//					}
+//					return true;
+//				}
+//				return super.onJsPrompt(view, url, message, defaultValue, result);
+//			}
+//		});
 
 		findViewById(R.id.btn).setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -200,6 +206,9 @@ public class WebViewActivity extends AppCompatActivity {
 		}
 		super.onDestroy();
 	}
+
+
+
 }
 
 //TODO https://www.jianshu.com/p/3a345d27cd42  漏洞测试

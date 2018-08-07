@@ -70,9 +70,11 @@ public class MainActivity extends AppCompatActivity {
 			}
 		});
 
-		recyclerView.setLayoutMode(1);
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+			recyclerView.setLayoutMode(1);
+		}
 
-		Log.d(TAG, "onCreate: recyclerView.getLayoutMode() "+recyclerView.getLayoutMode());
+//		Log.d(TAG, "onCreate: recyclerView.getLayoutMode() "+recyclerView.getLayoutMode());
 		isLayoutModelOptical(recyclerView);
 
 		testAnonation(101);
