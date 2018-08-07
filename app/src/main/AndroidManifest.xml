@@ -16,6 +16,9 @@
         android:protectionLevel="signature"
         android:sharedUserId="android.uid.system"/>
 
+    <!-- To access Google+ APIs: -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="false"
@@ -203,6 +206,10 @@
         </service>
 
         <activity android:name=".service.ServiceAIDLActivity">
+        </activity>
+        <activity android:name=".fragment.FragmentMainActivity">
+        </activity>
+        <activity android:name=".fragment.BannerActivity">
         </activity>
     </application>
 
