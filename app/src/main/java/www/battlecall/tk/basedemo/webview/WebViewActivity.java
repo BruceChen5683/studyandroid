@@ -42,7 +42,9 @@ public class WebViewActivity extends AppCompatActivity {
 
 
 //		mWebView.loadUrl("http://www.baidu.com/");
-		mWebView.loadUrl("file:///android_asset/js.html");
+//		mWebView.loadUrl("file:///android_asset/js.html");
+		mWebView.addJavascriptInterface(new AndroidtoJS(),"test");
+		mWebView.loadUrl("file:///android_asset/callAndroidJs.html");
 ////		//设置不用系统浏览器打开,直接显示在当前Webview
 //		mWebView.setWebViewClient(new WebViewClient(){
 //			@Override
@@ -77,6 +79,7 @@ public class WebViewActivity extends AppCompatActivity {
 
 			}
 		});
+
 
 
 		mWebView.setWebChromeClient(new WebChromeClient(){
