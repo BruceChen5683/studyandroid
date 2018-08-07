@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES"/>
     <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES"/>
     <uses-permission android:name="cjl.permission.test"/>
+    <!--<uses-permission android:name="android.permission.INTERNET"/>-->
 
     <permission
         android:name="cjl.permission.test"
@@ -210,6 +211,8 @@
         <activity android:name=".fragment.FragmentMainActivity">
         </activity>
         <activity android:name=".fragment.BannerActivity">
+        </activity>
+        <activity android:name=".webview.WebViewActivity">
         </activity>
     </application>
 
