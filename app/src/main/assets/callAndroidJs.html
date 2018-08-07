@@ -9,11 +9,18 @@
                                     // 由于对象映射，所以调用test对象等于调用Android映射的对象
                                         test.hello("js调用android的方法")
                                     }
+
+                                    function callAndroidByshouldOverrideUrlLoading (){
+                                        document.location="js://webview?arg1=111&arg2=222"
+                                    }
                 </script>
 
             </head>
 
             <body>
             <button type="button" id="button1" onclick="callAndroid()">js中点击调用android方法</button>
+
+            <button type="button" id="button2" onclick="callAndroidByshouldOverrideUrlLoading()">js中点击调用android方法2-</button>
+
             </body>
         </html>
