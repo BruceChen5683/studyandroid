@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+        <html>
+            <head>
+                <meta charset="utf-8">
+                <title callAndroidMethod by WebChromeClient></title>
+                <script>
+                    function clickprompt(){
+                   // 常用的拦截是：拦截 JS的输入框（即prompt（）方法）
+//因为只有prompt（）可以返回任意类型的值，操作最全面方便、更加灵活；而alert（）对话框没有返回值；confirm（）对话框只能返回两种状态（确定 / 取消）两个值
+                        var result = prompt("js://test3?arg1=aa&arg2=cc")
+                        alert("getResultFrom AndroidMethod :"+result)
+                    }
+                </script>
+
+                <body>
+                    <button type="button" id="button3" onclick="clickprompt()">點擊調用android代碼</button>
+                </body>
+            </head>
+        </html>
