@@ -222,6 +222,8 @@
         </activity>
         <activity android:name=".asyncTask.AsyncTaskActivity">
         </activity>
+        <activity android:name=".handlerthread.HanderThreadActivity">
+        </activity>
     </application>
 
 </manifest>
