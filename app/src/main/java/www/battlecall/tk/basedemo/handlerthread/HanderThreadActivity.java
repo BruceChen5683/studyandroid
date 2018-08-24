@@ -13,32 +13,37 @@ import www.battlecall.tk.basedemo.service.MyService;
 
 public class HanderThreadActivity extends AppCompatActivity {
 
-	HandlerThread handlerThread = new HandlerThread("myHandlerThread");
+	OpHandlerThread handlerThread = new OpHandlerThread("myHandlerThread");
 	private MyHandler myHandler;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_hander_thread);
+
+		Log.d("cjl", "HanderThreadActivity ---------onCreate:      ");
+		myHandler = new MyHandler();
+		handlerThread.setUiHandler(myHandler);
 		handlerThread.start();
-		myHandler = new MyHandler(handlerThread.getLooper());
-		myHandler.sendEmptyMessage(1);
+		//TODO
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		handlerThread.op1();
 	}
 
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-		myHandler.removeMessages(1);
-		myHandler = null;
+//		myHandler = null;TODO  or not
+		handlerThread.setUiHandler(null);
 		handlerThread.quit();
 		handlerThread = null;
 	}
 
 	private static class MyHandler extends Handler {
-
-		public MyHandler(Looper looper){
-			super(looper);
-		}
 
 		@Override
 		public void handleMessage(Message msg) {
