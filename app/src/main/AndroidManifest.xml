@@ -230,6 +230,10 @@
         </activity>
         <activity android:name=".handlerthread.MultiThSqExActivity">
         </activity>
+        <activity android:name=".dispatch.DispatchActivity2">
+        </activity>
+        <activity android:name=".view.TextViewButtonActivity">
+        </activity>
     </application>
 
 </manifest>

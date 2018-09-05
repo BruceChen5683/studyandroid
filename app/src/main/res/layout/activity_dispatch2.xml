@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<www.battlecall.tk.basedemo.dispatch.MyLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mylayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="www.battlecall.tk.basedemo.dispatch.DispatchActivity2">
+
+    <Button
+        android:id="@+id/btn1"
+        android:background="@drawable/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:text="Btn"/>
+
+    <Button
+        android:id="@+id/btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Btn2"/>
+</www.battlecall.tk.basedemo.dispatch.MyLayout>
